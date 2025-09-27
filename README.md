@@ -103,30 +103,30 @@ transforms.Compose([
 The training graphs show the following patterns:
 
 #### ResNet50 Training Progress:
-- **Training Loss**: Decreased from 1.985 to 0.052 over 10 epochs
-- **Classification Loss**: Decreased from 1.820 to 0.027
-- **Regression Loss**: Decreased from 0.165 to 0.025
-- **Validation Accuracy**: Increased from 37.9% to 49.5%
-- **Validation F1**: Increased from 0.349 to 0.496
+- **Training Loss**: Decreased from 1.990 to 0.632 over 13 epochs
+- **Classification Loss**: Decreased from 1.887 to 0.573
+- **Regression Loss**: Decreased from 0.103 to 0.059
+- **Validation Accuracy**: Increased from 17.5% to 39.4%
+- **Validation F1**: Increased from 0.159 to 0.394
 
 #### VGG16 Training Progress:
-- **Training Loss**: Decreased from 2.278 to 1.740 over 10 epochs
-- **Classification Loss**: Decreased from 2.090 to 1.595
-- **Regression Loss**: Decreased from 0.188 to 0.145
-- **Validation Accuracy**: Increased from 10.5% to 35.6%
-- **Validation F1**: Increased from 0.059 to 0.342
+- **Training Loss**: Decreased from 2.005 to 1.080 over 10 epochs
+- **Classification Loss**: Decreased from 1.900 to 1.011
+- **Regression Loss**: Decreased from 0.104 to 0.069
+- **Validation Accuracy**: Increased from 21.6% to 45.8%
+- **Validation F1**: Increased from 0.173 to 0.452
 
 #### Custom CNN Training Progress:
-- **Training Loss**: Decreased from 2.339 to 1.483 over 20 epochs
-- **Classification Loss**: Decreased from 2.100 to 1.200
-- **Regression Loss**: Decreased from 0.239 to 0.283
-- **Validation Accuracy**: Increased from 14.4% to 38.5%
-- **Validation F1**: Increased from 0.080 to 0.381
+- **Training Loss**: Decreased from 1.698 to 1.210 over 30 epochs
+- **Classification Loss**: Decreased from 1.584 to 1.139
+- **Regression Loss**: Decreased from 0.114 to 0.071
+- **Validation Accuracy**: Increased from 15.5% to 36.6%
+- **Validation F1**: Increased from 0.113 to 0.349
 
 ### 3.2 Convergence Analysis
-- **ResNet50**: Fastest convergence, best final performance
-- **VGG16**: Slower convergence, moderate performance
-- **Custom CNN**: Steady improvement, competitive performance
+- **VGG16**: Best final performance with good convergence
+- **ResNet50**: Good convergence with competitive performance
+- **Custom CNN**: Steady improvement over longer training period
 
 ---
 
@@ -136,17 +136,17 @@ The training graphs show the following patterns:
 
 | Model | Accuracy | Macro F1 | AUC | Kappa | Alpha |
 |-------|----------|----------|-----|-------|-------|
-| ResNet50 | 49.5% | 0.496 | 0.852 | 0.423 | 0.423 |
-| VGG16 | 35.6% | 0.342 | 0.774 | 0.265 | 0.265 |
-| Custom CNN | 38.5% | 0.381 | 0.720 | 0.310 | 0.310 |
+| ResNet50 | 39.4% | 0.394 | 0.779 | 0.306 | 0.306 |
+| VGG16 | 45.8% | 0.452 | 0.834 | 0.379 | 0.379 |
+| Custom CNN | 36.6% | 0.349 | 0.788 | 0.276 | 0.276 |
 
 ### 4.2 Regression Metrics
 
 | Model | Valence RMSE | Arousal RMSE | Valence CCC | Arousal CCC | Valence CORR | Arousal CORR |
 |-------|--------------|--------------|-------------|-------------|--------------|--------------|
-| ResNet50 | 0.376 | 0.347 | 0.566 | 0.438 | 0.600 | 0.470 |
-| VGG16 | 0.428 | 0.364 | 0.313 | 0.186 | 0.402 | 0.310 |
-| Custom CNN | 0.420 | 0.380 | 0.428 | 0.245 | 0.450 | 0.320 |
+| ResNet50 | 0.417 | 0.363 | 0.376 | 0.288 | 0.457 | 0.355 |
+| VGG16 | 0.401 | 0.354 | 0.484 | 0.378 | 0.526 | 0.424 |
+| Custom CNN | 0.419 | 0.354 | 0.365 | 0.290 | 0.446 | 0.404 |
 
 ### 4.3 Continuous Domain Evaluation Metrics Discussion
 
@@ -180,24 +180,24 @@ The training graphs show the following patterns:
 
 | Model | Classification Accuracy | Valence CCC | Arousal CCC | Composite Score |
 |-------|------------------------|-------------|-------------|-----------------|
-| **ResNet50** | **49.5%** | **0.566** | **0.438** | **1.500** |
-| Custom CNN | 38.5% | 0.428 | 0.245 | 1.058 |
-| VGG16 | 35.6% | 0.313 | 0.186 | 0.841 |
+| **VGG16** | **45.8%** | **0.484** | **0.378** | **1.312** |
+| ResNet50 | 39.4% | 0.376 | 0.288 | 1.060 |
+| Custom CNN | 36.6% | 0.365 | 0.290 | 1.021 |
 
-**Winner**: ResNet50 with highest composite score of 1.500
+**Winner**: VGG16 with highest composite score of 1.312
 
 ### 5.2 Training Time Analysis
 
 | Model | Epochs to Converge | Training Time (approx.) | Parameters |
 |-------|-------------------|-------------------------|------------|
-| ResNet50 | 10 | ~45 minutes | 26.1M |
+| ResNet50 | 13 | ~60 minutes | 26.1M |
 | VGG16 | 10 | ~60 minutes | 138.5M |
-| Custom CNN | 20 | ~35 minutes | 15.2M |
+| Custom CNN | 30 | ~50 minutes | 15.2M |
 
 ### 5.3 Efficiency Analysis
-- **ResNet50**: Best accuracy, moderate training time, efficient parameter usage
-- **Custom CNN**: Fastest training, competitive accuracy, most parameter-efficient
-- **VGG16**: Slowest training, highest parameter count, moderate accuracy
+- **VGG16**: Best accuracy, moderate training time, highest parameter count
+- **ResNet50**: Good accuracy, moderate training time, efficient parameter usage
+- **Custom CNN**: Competitive accuracy, longest training time, most parameter-efficient
 
 ---
 
@@ -248,11 +248,14 @@ Common misclassification patterns observed:
 ## 8. Conclusion
 
 ### 8.1 Key Findings
-1. **ResNet50** achieved the best overall performance with transfer learning
-2. **Custom CNN** showed competitive results despite training from scratch
-3. **Transfer learning** significantly improved convergence speed and accuracy
-4. **Continuous emotion prediction** is more challenging than classification
+1. **VGG16** achieved the best overall performance with transfer learning
+2. **ResNet50** showed competitive results with efficient parameter usage
+3. **Custom CNN** demonstrated steady improvement over extended training
+4. **Transfer learning** significantly improved convergence speed and accuracy
+5. **Continuous emotion prediction** is more challenging than classification
 
 
 
+
+**Report Completion Date**: [Current Date]
 
